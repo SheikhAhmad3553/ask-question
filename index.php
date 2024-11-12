@@ -15,6 +15,20 @@
         include('./client/login.php');
     } else if (isset($_GET['Ask'])) {
         include('./client/ask.php');
+    }else if (isset($_GET['q-id'])) {
+        $qid=$_GET['q-id'];
+        include('./client/question-details.php');
+    }else if(isset($_GET['c-id'])){
+        $cid=$_GET['c-id'];
+        include('./client/question.php');
+    }else if(isset($_GET['u-id'])){
+        $uid=$_GET['u-id'];
+        include('./client/question.php');
+    }else if(isset($_GET['Latest'])){
+        include('./client/question.php');
+    }
+    else{
+        include('./client/question.php');
     }
     ?>
 </body>

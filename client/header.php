@@ -21,6 +21,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="./">Home</a>
         </li>
+
+
       
         <?php
         if (isset($_SESSION['user']['username'])) { ?>
@@ -29,6 +31,10 @@ if (session_status() === PHP_SESSION_NONE) {
           </li>
           <li class="nav-item">
           <a class="nav-link " href="?Ask=true">Ask A Question</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="?u-id=<?php echo isset($_SESSION['user']['user-id']) ? $_SESSION['user']['user-id'] : ''; ?>">MY Question</a>
+
         </li>
         <?php } else { ?>
           <li class="nav-item">
@@ -43,7 +49,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <a class="nav-link" href="#">Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Latest Questions</a>
+          <a class="nav-link" href="?Latest=true">Latest Questions</a>
         </li>
       </ul>
     </div>
