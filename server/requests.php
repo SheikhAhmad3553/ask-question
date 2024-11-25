@@ -78,7 +78,15 @@ else if (isset($_GET['logout'])) {
 }
 
 // Ask question logic
+// Ask question logic
 else if (isset($_POST['ask'])) {
+    if (!isset($_SESSION['user']['user_id'])) {
+        // User is not logged in, redirect to login page
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>Swal.fire('Error!', 'You must be logged in to ask a question.', 'error').then(() => { window.location.href = '/login.php'; });</script>";
+        exit();
+    }
+
     $title = $_POST['title'];
     $description = $_POST['description'];
     $category_id = $_POST['category'];
@@ -94,7 +102,17 @@ else if (isset($_POST['ask'])) {
         echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         echo "<script>Swal.fire('Error!', 'Error adding question', 'error');</script>";
     }
-}else if (isset($_POST['answer'])) {
+}
+
+// Answer logic
+else if (isset($_POST['answer'])) {
+    if (!isset($_SESSION['user']['user_id'])) {
+        // User is not logged in, redirect to login page
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>Swal.fire('Error!', 'You must be logged in to answer a question.', 'error').then(() => { window.location.href = '/login.php'; });</script>";
+        exit();
+    }
+
     $answer = $_POST['answer'];
     $question_id = $_POST['question_id'];
     $user_id = $_SESSION['user']['user_id'];
@@ -110,6 +128,7 @@ else if (isset($_POST['ask'])) {
         echo "<script>Swal.fire('Error!', 'Error adding answer', 'error');</script>";
     }
 }
+
 
 ?>
 </body>
